@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FastIndiaRider</string>
+    <string name="tag_line">rider</string>
+    <string name="welcome">Welcome Rider!</string>
+</resources>
