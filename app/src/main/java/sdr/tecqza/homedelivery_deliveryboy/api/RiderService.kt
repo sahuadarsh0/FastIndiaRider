@@ -12,11 +12,12 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import sdr.tecqza.homedelivery_deliveryboy.model.CheckUpdate
+import sdr.tecqza.homedelivery_deliveryboy.model.Response
 
 interface RiderService {
 
     @FormUrlEncoded
-    @POST("customer/login")
+    @POST("rider/login")
     fun login(@Field("mobile") mobile: String?): Call<Response?>?
 
 
@@ -32,10 +33,6 @@ interface RiderService {
     fun customerRegister(
         @Field("name") name: String?,
         @Field("mobile") mobile: String?,
-        @Field("email_id") emailId: String?,
-        @Field("address") address: String?,
-        @Field("state_id") stateId: String?,
-        @Field("city_id") cityId: String?
     ): Call<Response>
 
     @GET("customer/appVer")
@@ -45,7 +42,7 @@ interface RiderService {
     companion object {
 
         var BASE_URL = "http://fastindia.app/api/"
-        var ASSETS_URL = "http://fastindia.app/uploads/customer/"
+        var RIDER_URL = "http://fastindia.app/uploads/rider/"
 
         fun create(): RiderService {
 
@@ -58,7 +55,6 @@ interface RiderService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(builder.build())
-
                 .baseUrl(BASE_URL)
                 .build()
             return retrofit.create(RiderService::class.java)

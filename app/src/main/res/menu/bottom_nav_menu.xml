@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_order_history"
+        android:icon="@drawable/ic_list"
+        android:title="@string/title_order_history" />
+
+    <item
+        android:id="@+id/navigation_holiday_history"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/title_holiday_history" />
+
+    <item
+        android:id="@+id/navigation_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/title_logout" />
+
+</menu>

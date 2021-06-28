@@ -8,8 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
-import sdr.tecqza.homedelivery_deliveryboy.MainActivity
+import sdr.tecqza.homedelivery_deliveryboy.api.RiderService
 import sdr.tecqza.homedelivery_deliveryboy.databinding.ActivityLoginBinding
+import sdr.tecqza.homedelivery_deliveryboy.model.Response
 import technited.minds.androidutils.ProcessDialog
 import technited.minds.androidutils.SharedPrefs
 
@@ -21,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var responseData: Response
     private lateinit var userSharedPreferences: SharedPrefs
     private lateinit var processDialog: ProcessDialog
-    private lateinit var transfer: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,20 +51,27 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Enter 4 digit OTP", Toast.LENGTH_SHORT).show()
                 }
             }
-
+            register.setOnClickListener{
+                startWeb("https://fastindia.app/home/rider-registration")
+            }
         }
+    }
+
+    private fun startWeb(url: String) {
+        val i = Intent(this, WebPage::class.java)
+        i.putExtra("url", url)
+        startActivity(i)
     }
 
     private fun send(mobile: String) {
         processDialog.show()
-        val apiInterface = CustomerService.create().login(mobile)
+        val apiInterface = RiderService.create().login(mobile)
         apiInterface?.enqueue(object : Callback<Response?> {
             override fun onResponse(call: Call<Response?>, response: retrofit2.Response<Response?>) {
                 if (response.body()?.error.equals("0")) {
                     visibleSubmit()
                     responseData = response.body()!!
                     otp = response.body()?.otp.toString()
-                    transfer = responseData.message.toString()
                     responseData.data?.apply {
                         userSharedPreferences["name"] = name
                         userSharedPreferences["mobile"] = mobile
@@ -88,10 +95,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun verify(enteredOtp: String) {
         if (enteredOtp == otp) {
-            when (transfer) {
-                "Login" -> openDashboard()
-                "Register" -> openRegister()
-            }
+            openDashboard()
         } else {
             Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show()
         }
@@ -103,12 +107,6 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun openRegister() {
-        val i = Intent(this, RegisterActivity::class.java)
-        i.putExtra("mobile", binding.mobile.text.toString())
-        startActivity(i)
-        finish()
-    }
 
     private fun visibleSubmit() {
         binding.mobile.visibility = GONE

@@ -2,4 +2,13 @@
     <string name="app_name">FastIndiaRider</string>
     <string name="tag_line">rider</string>
     <string name="welcome">Welcome Rider!</string>
+    <string name="register_here">Register Here</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_holiday_history">Holidays</string>
+    <string name="title_order_history">History</string>
+    <string name="title_logout">Logout</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="login">Login</string>
 </resources>

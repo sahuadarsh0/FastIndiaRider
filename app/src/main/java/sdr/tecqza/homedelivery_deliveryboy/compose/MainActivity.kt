@@ -1,4 +1,4 @@
-package sdr.tecqza.homedelivery_deliveryboy
+package sdr.tecqza.homedelivery_deliveryboy.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import sdr.tecqza.homedelivery_deliveryboy.ui.theme.FastIndiaRiderTheme
+import sdr.tecqza.homedelivery_deliveryboy.compose.theme.FastIndiaRiderTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

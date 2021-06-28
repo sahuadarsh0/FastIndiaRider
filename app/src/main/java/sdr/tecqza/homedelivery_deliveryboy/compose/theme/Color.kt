@@ -1,4 +1,4 @@
-package sdr.tecqza.homedelivery_deliveryboy.ui.theme
+package sdr.tecqza.homedelivery_deliveryboy.compose.theme
 
 import androidx.compose.ui.graphics.Color
 

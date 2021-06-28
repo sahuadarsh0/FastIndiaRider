@@ -1,4 +1,4 @@
-package sdr.tecqza.homedelivery_deliveryboy
+package sdr.tecqza.homedelivery_deliveryboy.ui
 
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -14,11 +14,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
+import sdr.tecqza.homedelivery_deliveryboy.R
 import sdr.tecqza.homedelivery_deliveryboy.api.RiderService
 import sdr.tecqza.homedelivery_deliveryboy.api.Service
 import sdr.tecqza.homedelivery_deliveryboy.model.Check
 import sdr.tecqza.homedelivery_deliveryboy.model.CheckUpdate
-import sdr.tecqza.homedelivery_deliveryboy.ui.LoginActivity
 import technited.minds.androidutils.MD
 
 class Splash : AppCompatActivity() {
@@ -47,7 +47,7 @@ class Splash : AppCompatActivity() {
                     handler.postDelayed({
                         handler1.removeCallbacks(runnable)
 
-                        checkUser();
+                        checkUser()
                     }, 3000)
                 }
             }
