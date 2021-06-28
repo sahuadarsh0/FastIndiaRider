@@ -11,4 +11,10 @@
     <string name="enter_otp">Enter OTP</string>
     <string name="send_otp">Send OTP</string>
     <string name="login">Login</string>
+    <string name="duty_off">Duty Off</string>
+    <string name="duty_on">Duty On</string>
+    <string name="select_outlet">Select Outlet</string>
+    <string name="today_s_performance">Today\'s Performance</string>
+    <string name="pending">Pending</string>
+    <string name="delivered">Delivered</string>
 </resources>

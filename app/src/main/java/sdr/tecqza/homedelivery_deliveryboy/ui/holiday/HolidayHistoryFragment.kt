@@ -1,32 +1,37 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui.holiday
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import sdr.tecqza.homedelivery_deliveryboy.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import sdr.tecqza.homedelivery_deliveryboy.databinding.FragmentHolidayHistoryBinding
 
 class HolidayHistoryFragment : Fragment() {
+    private lateinit var holidayHistoryViewModel: HolidayHistoryViewModel
+    private var _binding: FragmentHolidayHistoryBinding? = null
 
-    companion object {
-        fun newInstance() = HolidayHistoryFragment()
-    }
-
-    private lateinit var viewModel: HolidayHistoryViewModel
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_holiday_history, container, false)
+    ): View {
+        holidayHistoryViewModel =
+            ViewModelProvider(this).get(HolidayHistoryViewModel::class.java)
+
+        _binding = FragmentHolidayHistoryBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+
+        return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HolidayHistoryViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
