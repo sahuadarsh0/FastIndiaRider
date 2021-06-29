@@ -28,20 +28,24 @@ interface RiderService {
     fun order(
         @Path("rider_id") riderId: String?,
         @Path("status") status: String?,
-    ): Call<List<Order?>?>
+    ): Call<ArrayList<Order?>?>
+
+    @GET("customer/index/{rider_id}")
+    fun index(
+        @Path("rider_id") riderId: String?
+    ): Call<ArrayList<Order?>?>
+
+    @FormUrlEncoded
+    @POST("customer/orderStatus")
+    fun orderStatus(
+        @Field("order_id") order_id: String?
+    ): Call<ResponseBody>
 
 
     @FormUrlEncoded
     @POST("rider/updateStatus")
     fun updateStatus(
         @Field("mobile") mobile: String?
-    ): Call<Response>
-
-    @FormUrlEncoded
-    @POST("rider/holiday")
-    fun holiday1(
-        @Field("rider_id") rider_id: String?,
-        @Field("mobile") mobile: String?,
     ): Call<Response>
 
 
@@ -54,7 +58,6 @@ interface RiderService {
     fun orderCount(
         @Path("rider_id") riderId: String?
     ): Call<Count?>
-
 
 
     @GET("rider/appVer")

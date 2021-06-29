@@ -147,4 +147,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/pending_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="pending,cancel,call"
+        tools:layout_editor_absoluteX="254dp"
+        tools:layout_editor_absoluteY="103dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

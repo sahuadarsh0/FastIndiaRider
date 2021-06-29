@@ -29,7 +29,8 @@
         tools:layout="@layout/fragment_order_history" >
         <argument
             android:name="status"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="All" />
     </fragment>
     <fragment
         android:id="@+id/navigation_holiday_history"

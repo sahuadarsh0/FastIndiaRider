@@ -56,11 +56,13 @@ class HomeFragment : Fragment() {
                 .centerCrop()
                 .into(riderImage)
             pendingLayout.setOnClickListener {
-                val action = HomeFragmentDirections.actionNavigationHomeToNavigationOrderHistory("Pending")
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationOrderHistory()
+                action.status = "Pending"
                 findNavController().navigate(action)
             }
             deliveredLayout.setOnClickListener {
-                val action = HomeFragmentDirections.actionNavigationHomeToNavigationOrderHistory("Delivered")
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationOrderHistory()
+                action.status = "Delivered"
                 findNavController().navigate(action)
             }
             duty.setOnCheckedChangeListener { checked ->

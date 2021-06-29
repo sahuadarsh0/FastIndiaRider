@@ -25,6 +25,7 @@ class OrderHistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var userSharedPreferences: SharedPrefs
     private lateinit var processDialog: ProcessDialog
+    val args : OrderHistoryFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,26 +41,42 @@ class OrderHistoryFragment : Fragment() {
 
         processDialog = ProcessDialog(requireContext())
         userSharedPreferences = SharedPrefs(requireContext(), "USER")
-        val args : OrderHistoryFragmentArgs by navArgs()
-        if (args.status!= null){
+        if (args.status!= "All")
             getOrder(args.status)
-        }
-
+        else
+            getAllOrder()
 
         return root
     }
 
-    private fun getOrder(status: String) {
-        val order = RiderService.create().order(userSharedPreferences["riderId"], status)
-        order.enqueue(object : Callback<List<Order?>?> {
-            override fun onResponse(call: Call<List<Order?>?>, response: Response<List<Order?>?>) {
+    private fun getAllOrder() {
+
+        val order = RiderService.create().index(userSharedPreferences["riderId"])
+        order.enqueue(object : Callback<ArrayList<Order?>?> {
+            override fun onResponse(call: Call<ArrayList<Order?>?>, response: Response<ArrayList<Order?>?>) {
 
                 val orders = response.body()
                 Log.d("asa", "onResponse: ${orders?.size}")
 
             }
 
-            override fun onFailure(call: Call<List<Order?>?>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Order?>?>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    private fun getOrder(status: String) {
+        val order = RiderService.create().order(userSharedPreferences["riderId"], status)
+        order.enqueue(object : Callback<ArrayList<Order?>?> {
+            override fun onResponse(call: Call<ArrayList<Order?>?>, response: Response<ArrayList<Order?>?>) {
+
+                val orders = response.body()
+                Log.d("asa", "onResponse: ${orders?.size}")
+
+            }
+
+            override fun onFailure(call: Call<ArrayList<Order?>?>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })
