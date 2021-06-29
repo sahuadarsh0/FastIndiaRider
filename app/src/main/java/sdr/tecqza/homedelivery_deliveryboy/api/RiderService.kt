@@ -7,10 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import sdr.tecqza.homedelivery_deliveryboy.model.CheckUpdate
 import sdr.tecqza.homedelivery_deliveryboy.model.Response
 
@@ -29,19 +26,33 @@ interface RiderService {
     ): Call<ResponseBody?>
 
     @FormUrlEncoded
-    @POST("customer/register")
+    @POST("rider/register")
     fun customerRegister(
         @Field("name") name: String?,
         @Field("mobile") mobile: String?,
     ): Call<Response>
 
-    @GET("customer/appVer")
+    @FormUrlEncoded
+    @POST("rider/holiday")
+    fun holiday1(
+        @Field("rider_id") rider_id: String?,
+        @Field("mobile") mobile: String?,
+    ): Call<Response>
+
+
+    @GET("rider/holiday/{rider_id}")
+    fun holiday(
+        @Path("rider_id") riderId: String?
+    ): Call<ResponseBody?>
+
+
+    @GET("rider/appVer")
     fun checkUpdate(): Call<CheckUpdate>
 
 
     companion object {
 
-        var BASE_URL = "http://fastindia.app/api/"
+        private var BASE_URL = "http://fastindia.app/api/"
         var RIDER_URL = "http://fastindia.app/uploads/rider/"
 
         fun create(): RiderService {

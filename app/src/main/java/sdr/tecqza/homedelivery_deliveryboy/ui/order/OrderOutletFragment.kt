@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import sdr.tecqza.homedelivery_deliveryboy.databinding.FragmentOrderHistoryBinding
+import sdr.tecqza.homedelivery_deliveryboy.databinding.FragmentOrderOutletBinding
 
-class OrderHistoryFragment : Fragment() {
+class OrderOutletFragment : Fragment() {
 
     private lateinit var orderViewModel: OrderViewModel
-    private var _binding: FragmentOrderHistoryBinding? = null
+    private var _binding: FragmentOrderOutletBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,7 +24,7 @@ class OrderHistoryFragment : Fragment() {
         orderViewModel =
             ViewModelProvider(this).get(OrderViewModel::class.java)
 
-        _binding = FragmentOrderHistoryBinding.inflate(inflater, container, false)
+        _binding = FragmentOrderOutletBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
