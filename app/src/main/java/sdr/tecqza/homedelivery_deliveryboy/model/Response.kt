@@ -17,16 +17,20 @@ data class Data(
     val address: String? = null,
     val mobile: String? = null,
     val name: String? = null,
+    val status: String? = null,
+    val photoUrl: String? = null,
 
     @field:SerializedName("state_id")
     val stateId: String? = null,
 
-    val photoUrl: String? = null,
-    @field:SerializedName("customer_id")
-    val customerId: String? = null,
+    @field:SerializedName("user_id")
+    val userId: String? = null,
 
     @field:SerializedName("city_id")
     val cityId: String? = null,
+
+    @field:SerializedName("rider_id")
+    val riderId: String? = null,
 
     )
 

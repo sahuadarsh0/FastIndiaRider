@@ -79,6 +79,9 @@ class LoginActivity : AppCompatActivity() {
                         userSharedPreferences["address"] = address
                         userSharedPreferences["cityId"] = cityId
                         userSharedPreferences["stateId"] = stateId
+                        userSharedPreferences["riderId"] = riderId
+                        userSharedPreferences["image"] = image
+                        userSharedPreferences["status"] = status
                         userSharedPreferences.apply()
                     }
                 }

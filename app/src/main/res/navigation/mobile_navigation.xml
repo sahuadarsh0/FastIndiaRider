@@ -22,7 +22,11 @@
         android:id="@+id/navigation_order_history"
         android:name="sdr.tecqza.homedelivery_deliveryboy.ui.order.OrderHistoryFragment"
         android:label="@string/title_holiday_history"
-        tools:layout="@layout/fragment_order_history" />
+        tools:layout="@layout/fragment_order_history" >
+        <argument
+            android:name="status"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_holiday_history"
         android:name="sdr.tecqza.homedelivery_deliveryboy.ui.holiday.HolidayHistoryFragment"

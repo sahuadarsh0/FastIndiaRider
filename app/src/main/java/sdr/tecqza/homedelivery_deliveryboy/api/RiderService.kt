@@ -8,8 +8,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import sdr.tecqza.homedelivery_deliveryboy.model.CheckUpdate
-import sdr.tecqza.homedelivery_deliveryboy.model.Response
+import sdr.tecqza.homedelivery_deliveryboy.model.*
 
 interface RiderService {
 
@@ -24,6 +23,13 @@ interface RiderService {
         @Field("order_id") order_id: String?,
         @Field("reason") reason: String?,
     ): Call<ResponseBody?>
+
+    @GET("customer/order/{rider_id}/{status}")
+    fun order(
+        @Path("rider_id") riderId: String?,
+        @Path("status") status: String?,
+    ): Call<Order?>
+
 
     @FormUrlEncoded
     @POST("rider/register")
@@ -43,7 +49,13 @@ interface RiderService {
     @GET("rider/holiday/{rider_id}")
     fun holiday(
         @Path("rider_id") riderId: String?
-    ): Call<ResponseBody?>
+    ): Call<List<Holiday?>?>
+
+    @GET("rider/orderCount/{rider_id}")
+    fun orderCount(
+        @Path("rider_id") riderId: String?
+    ): Call<Count?>
+
 
 
     @GET("rider/appVer")
