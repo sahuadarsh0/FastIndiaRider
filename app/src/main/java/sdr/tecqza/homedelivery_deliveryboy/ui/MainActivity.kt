@@ -1,6 +1,7 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,12 +24,13 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+        navView.setOnNavigationItemSelectedListener(this)
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_logout -> {
+            R.id.logout -> {
                 MaterialDialog(this).show {
                     title(text = "Logout?")
                     message(text = "Are you sure want to logout ?")

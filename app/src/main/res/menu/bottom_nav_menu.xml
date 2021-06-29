@@ -17,7 +17,7 @@
         android:title="@string/title_holiday_history" />
 
     <item
-        android:id="@+id/navigation_logout"
+        android:id="@+id/logout"
         android:icon="@drawable/ic_logout"
         android:title="@string/title_logout" />
 

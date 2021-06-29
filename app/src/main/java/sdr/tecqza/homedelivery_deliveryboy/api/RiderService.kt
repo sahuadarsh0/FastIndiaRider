@@ -32,10 +32,9 @@ interface RiderService {
 
 
     @FormUrlEncoded
-    @POST("rider/register")
-    fun customerRegister(
-        @Field("name") name: String?,
-        @Field("mobile") mobile: String?,
+    @POST("rider/updateStatus")
+    fun updateStatus(
+        @Field("mobile") mobile: String?
     ): Call<Response>
 
     @FormUrlEncoded
@@ -51,7 +50,7 @@ interface RiderService {
         @Path("rider_id") riderId: String?
     ): Call<List<Holiday?>?>
 
-    @GET("rider/orderCount/{rider_id}")
+    @GET("customer/orderCount/{rider_id}")
     fun orderCount(
         @Path("rider_id") riderId: String?
     ): Call<Count?>

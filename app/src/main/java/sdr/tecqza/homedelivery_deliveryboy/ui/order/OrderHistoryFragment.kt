@@ -25,7 +25,6 @@ class OrderHistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var userSharedPreferences: SharedPrefs
     private lateinit var processDialog: ProcessDialog
-    val args : OrderHistoryFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +40,7 @@ class OrderHistoryFragment : Fragment() {
 
         processDialog = ProcessDialog(requireContext())
         userSharedPreferences = SharedPrefs(requireContext(), "USER")
+        val args : OrderHistoryFragmentArgs by navArgs()
         if (args.status!= null){
             getOrder(args.status)
         }

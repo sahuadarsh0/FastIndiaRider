@@ -7,12 +7,13 @@
     android:background="@color/yellow"
     tools:context=".ui.home.HomeFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/rider_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
         android:background="@color/white"
+        app:shapeAppearanceOverlay="@style/roundedCornersImageView"
         android:src="@drawable/fastindia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +81,6 @@
         app:layout_constraintStart_toEndOf="@+id/duty"
         app:layout_constraintTop_toTopOf="@+id/duty" />
 
-
     <TextView
         android:id="@+id/today_label"
         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
         android:background="@drawable/curve_back"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="15dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toStartOf="@+id/delivered_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:text="@string/pending"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/duty" />
@@ -145,7 +145,7 @@
         android:backgroundTint="@color/light_yellow"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="15dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pending_layout"
@@ -156,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:text="@string/delivered"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/duty" />
@@ -178,7 +178,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/home_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pending_layout">
@@ -187,7 +187,7 @@
             android:id="@+id/select_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="@string/select_outlet"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -202,13 +202,12 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:src="@drawable/ic_big_bazaar_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select_label" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

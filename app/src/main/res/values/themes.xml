@@ -119,5 +119,9 @@
         <item name="rippleColor">@color/white</item>
     </style>
 
+    <style name="roundedCornersImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
     <color name="grey">#949494</color>
 </resources>
