@@ -28,7 +28,7 @@ interface RiderService {
     fun order(
         @Path("rider_id") riderId: String?,
         @Path("status") status: String?,
-    ): Call<Order?>
+    ): Call<List<Order?>?>
 
 
     @FormUrlEncoded

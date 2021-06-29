@@ -1,12 +1,14 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui.order
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +25,7 @@ class OrderHistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var userSharedPreferences: SharedPrefs
     private lateinit var processDialog: ProcessDialog
+    val args : OrderHistoryFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,20 +41,25 @@ class OrderHistoryFragment : Fragment() {
 
         processDialog = ProcessDialog(requireContext())
         userSharedPreferences = SharedPrefs(requireContext(), "USER")
+        if (args.status!= null){
+            getOrder(args.status)
+        }
+
 
         return root
     }
 
     private fun getOrder(status: String) {
         val order = RiderService.create().order(userSharedPreferences["riderId"], status)
-        order.enqueue(object : Callback<Order?> {
-            override fun onResponse(call: Call<Order?>, response: Response<Order?>) {
+        order.enqueue(object : Callback<List<Order?>?> {
+            override fun onResponse(call: Call<List<Order?>?>, response: Response<List<Order?>?>) {
 
-//                val orders =
+                val orders = response.body()
+                Log.d("asa", "onResponse: ${orders?.size}")
 
             }
 
-            override fun onFailure(call: Call<Order?>, t: Throwable) {
+            override fun onFailure(call: Call<List<Order?>?>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })

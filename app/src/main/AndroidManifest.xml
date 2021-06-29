@@ -11,11 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FastIndiaRider">
+        android:theme="@style/Theme.FastIndiaRider"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.Splash"
             android:exported="true"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.FastIndiaRider.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FastIndiaRider.NoActionBar" />
+
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true"
+            android:label="@string/login"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FastIndiaRider.NoActionBar" />
+        <activity
+            android:name=".ui.WebPage"
+            android:exported="true"
+            android:label="@string/welcome"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FastIndiaRider.NoActionBar" />
     </application>
 
 </manifest>
