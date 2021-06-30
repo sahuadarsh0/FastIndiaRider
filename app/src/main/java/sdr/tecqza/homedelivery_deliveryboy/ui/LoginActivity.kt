@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Enter 4 digit OTP", Toast.LENGTH_SHORT).show()
                 }
             }
-            register.setOnClickListener{
+            register.setOnClickListener {
                 startWeb("https://fastindia.app/home/rider-registration")
             }
         }
@@ -98,7 +98,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun verify(enteredOtp: String) {
         if (enteredOtp == otp) {
-            openDashboard()
+            if (!userSharedPreferences["status"].equals("Disabled"))
+                openDashboard()
+            else
+                Toast.makeText(this, "Login Denied", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show()
         }

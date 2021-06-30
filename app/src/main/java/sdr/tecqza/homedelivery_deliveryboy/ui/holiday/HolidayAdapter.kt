@@ -1,24 +1,13 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui.holiday
 
-import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
+import androidx.compose.ui.res.colorResource
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.input
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import sdr.tecqza.homedelivery_deliveryboy.R
-import sdr.tecqza.homedelivery_deliveryboy.api.RiderService
 import sdr.tecqza.homedelivery_deliveryboy.databinding.ListHolidaysBinding
-import sdr.tecqza.homedelivery_deliveryboy.databinding.ListOrderBinding
 import sdr.tecqza.homedelivery_deliveryboy.model.Holiday
-import sdr.tecqza.homedelivery_deliveryboy.model.Order
-import sdr.tecqza.homedelivery_deliveryboy.ui.order.OrderAdapter
 
 
 class HolidayAdapter : RecyclerView.Adapter<HolidayAdapter.HolidayViewHolder>() {
@@ -50,9 +39,14 @@ class HolidayAdapter : RecyclerView.Adapter<HolidayAdapter.HolidayViewHolder>() 
         fun bind(holiday: Holiday) {
             binding.apply {
                 date.text = holiday.date
+                if (holiday.status == "Active")
+                    card.setCardBackgroundColor(Color.parseColor("#FEBE14"))
+                else
+                    card.setCardBackgroundColor(Color.parseColor("#CECECE"))
             }
 
         }
 
     }
 }
+

@@ -40,10 +40,13 @@ class OrderOutletFragment : Fragment() {
         userSharedPreferences = SharedPrefs(requireContext(), "USER")
         binding.apply {
             submit.setOnClickListener {
-                if (mobile.text.isNotEmpty() || orderNo.text.isNotEmpty() || customerName.text.isNotEmpty()) {
+                if (mobile.text.isNotEmpty() || orderNo.text.isNotEmpty() || customerName.text.isNotEmpty() || mobile.text
+                        .matches(Regex("^[6-9][0-9]{9}$"))) {
                     processDialog.show()
                     send(orderNo.text.toString(), customerName.text.toString(), mobile.text.toString())
                 }
+                else
+                    Toast.makeText(requireContext(), "Fill All details properly", Toast.LENGTH_SHORT).show()
             }
             return root
         }

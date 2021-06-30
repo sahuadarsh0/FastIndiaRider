@@ -171,6 +171,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                     if (response.isSuccessful)
                         Log.d("asa", "order cancelled")
                     Toast.makeText(itemView.context, "Order cancelled", Toast.LENGTH_SHORT).show()
+                    itemView.findNavController().navigate(R.id.navigation_home)
                     processDialog.dismiss()
                 }
 
