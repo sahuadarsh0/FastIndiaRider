@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
@@ -83,18 +82,29 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                     intent.data = Uri.parse("tel:" + order.mobile)
                     it.context.startActivity(intent)
                 }
+
                 cancel.setOnClickListener {
-                    MaterialDialog(it.context).show {
+
+                    MaterialDialog(itemView.context).show {
+                        title(text = "Reason")
+                        message(text = "Enter reason for Cancellation")
+                        cornerRadius(16f)
+
                         input { dialog, text ->
+
+                            if (text.toString().isNullOrBlank())
+                                Toast.makeText(itemView.context, "Reason cannot be empty", Toast.LENGTH_SHORT).show()
+                            else
+                                cancelOrderStatus(order.orderId!!, text.toString())
+
                         }
                         positiveButton(R.string.submit)
                     }
-//                    cancelOrderStatus(order.orderId!!, "reason")
                 }
-                if (order.status == "Delivered")
-                    pendingGroup.visibility = View.GONE
-                else
+                if (order.status == "Pending")
                     delivered.visibility = View.GONE
+                else
+                    pendingGroup.visibility = View.GONE
             }
 
         }
@@ -158,13 +168,16 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
             val cancelOrderStatus = RiderService.create().cancelOrderStatus(orderId, reason)
             cancelOrderStatus.enqueue(object : Callback<ResponseBody?> {
                 override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-
+                    if (response.isSuccessful)
+                        Log.d("asa", "order cancelled")
+                    Toast.makeText(itemView.context, "Order cancelled", Toast.LENGTH_SHORT).show()
                     processDialog.dismiss()
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    Toast.makeText(itemView.context, "Error Order not cancelled", Toast.LENGTH_SHORT).show()
+
                     processDialog.dismiss()
-                    TODO("Not yet implemented")
                 }
 
 
