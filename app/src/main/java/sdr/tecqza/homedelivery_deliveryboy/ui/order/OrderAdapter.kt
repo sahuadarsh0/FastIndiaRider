@@ -22,9 +22,9 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     private val orderList = ArrayList<Order>()
 
-    fun setList(order: ArrayList<Order>) {
+    fun setList(order: ArrayList<Order>?) {
         orderList.clear()
-        orderList.addAll(order)
+        orderList.addAll(order!!)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
@@ -54,7 +54,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                     orderStatus(order.orderId!!)
                 }
                 call.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_CALL)
+                    val intent = Intent(Intent.ACTION_DIAL)
                     intent.data = Uri.parse("tel:" + order.mobile)
                     it.context.startActivity(intent)
                 }
@@ -62,7 +62,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                     MaterialDialog(it.context).show {
                         input { dialog, text ->
                         }
-                        positiveButton(R.string.send_otp)
+                        positiveButton(R.string.submit)
                     }
                     cancelOrderStatus(order.orderId!!,"reason")
                 }

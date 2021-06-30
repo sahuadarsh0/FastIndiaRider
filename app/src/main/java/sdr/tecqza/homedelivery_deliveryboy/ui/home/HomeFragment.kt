@@ -82,13 +82,16 @@ class HomeFragment : Fragment() {
 
 
     private fun changeDutyMode() {
+        processDialog.show()
         val changeDutyMode = RiderService.create().updateStatus(userSharedPreferences["mobile"])
         changeDutyMode.enqueue(object : Callback<Response?> {
             override fun onResponse(call: Call<Response?>, response: retrofit2.Response<Response?>) {
                 val body = response.body()
                 userSharedPreferences["status"] = body?.data?.status
+                processDialog.dismiss()
             }
             override fun onFailure(call: Call<Response?>, t: Throwable) {
+                processDialog.dismiss()
             }
         })
     }

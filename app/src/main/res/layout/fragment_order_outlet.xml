@@ -16,7 +16,7 @@ tools:context=".ui.order.OrderOutletFragment">
 
 
     <TextView
-        android:id="@+id/orders"
+        android:id="@+id/orders_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -36,7 +36,7 @@ tools:context=".ui.order.OrderOutletFragment">
         android:src="@drawable/ic_big_bazaar_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orders" />
+        app:layout_constraintTop_toBottomOf="@+id/orders_label" />
 
 
     <TextView
@@ -63,7 +63,7 @@ tools:context=".ui.order.OrderOutletFragment">
         android:layout_marginTop="82dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_style_selected"
-        android:hint="Start Typing"
+        android:hint="@string/start_typing"
         android:inputType="text"
         android:maxLines="1"
         android:padding="8dp"
@@ -98,7 +98,7 @@ tools:context=".ui.order.OrderOutletFragment">
         android:layout_marginTop="52dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_style_selected"
-        android:hint="Start Typing"
+        android:hint="@string/start_typing"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:padding="8dp"
@@ -134,7 +134,7 @@ tools:context=".ui.order.OrderOutletFragment">
         android:layout_marginTop="52dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_style_selected"
-        android:hint="Start Typing"
+        android:hint="@string/start_typing"
         android:inputType="text"
         android:maxLines="1"
         android:padding="8dp"
@@ -153,7 +153,7 @@ tools:context=".ui.order.OrderOutletFragment">
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Submit"
+        android:text="@string/submit"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

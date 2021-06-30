@@ -24,4 +24,6 @@
     <string name="cancel">Cancel</string>
     <string name="orders">Orders</string>
     <string name="pick_up_from">Pick up From</string>
+    <string name="submit">submit</string>
+    <string name="start_typing">Start Typing</string>
 </resources>

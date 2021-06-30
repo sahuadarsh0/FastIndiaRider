@@ -28,18 +28,30 @@ interface RiderService {
     fun order(
         @Path("rider_id") riderId: String?,
         @Path("status") status: String?,
-    ): Call<ArrayList<Order?>?>
+    ): Call<ArrayList<Order>?>
 
     @GET("customer/index/{rider_id}")
     fun index(
         @Path("rider_id") riderId: String?
-    ): Call<ArrayList<Order?>?>
+    ): Call<ArrayList<Order>?>
 
     @FormUrlEncoded
     @POST("customer/orderStatus")
     fun orderStatus(
         @Field("order_id") order_id: String?
     ): Call<ResponseBody>
+
+
+    @FormUrlEncoded
+    @POST("customer/entry")
+    fun entry(
+        @Field("order_no") orderNo: String?,
+        @Field("name") name: String?,
+        @Field("mobile") mobile: String?,
+        @Field("city_id") cityId: String?,
+        @Field("state_id") stateId: String?,
+        @Field("rider_id") riderId: String?
+    ): Call<Response>
 
 
     @FormUrlEncoded
