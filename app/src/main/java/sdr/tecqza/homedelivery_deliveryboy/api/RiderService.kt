@@ -64,7 +64,7 @@ interface RiderService {
     @GET("rider/holiday/{rider_id}")
     fun holiday(
         @Path("rider_id") riderId: String?
-    ): Call<List<Holiday?>?>
+    ): Call<ArrayList<Holiday>?>
 
     @GET("customer/orderCount/{rider_id}")
     fun orderCount(

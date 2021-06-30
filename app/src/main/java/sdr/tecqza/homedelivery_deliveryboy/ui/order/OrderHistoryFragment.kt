@@ -62,7 +62,6 @@ class OrderHistoryFragment : Fragment() {
             override fun onResponse(call: Call<ArrayList<Order>?>, response: Response<ArrayList<Order>?>) {
 
                 val orders = response.body()
-                Log.d("asa", "onResponse: ${orders?.size}")
                 adapter.setList(orders)
                 adapter.notifyDataSetChanged()
                 processDialog.dismiss()
@@ -83,7 +82,6 @@ class OrderHistoryFragment : Fragment() {
                 val orders = response.body()
                 adapter.setList(orders)
                 adapter.notifyDataSetChanged()
-                Log.d("asa", "onResponse: ${orders?.size}")
                 processDialog.dismiss()
 
             }
