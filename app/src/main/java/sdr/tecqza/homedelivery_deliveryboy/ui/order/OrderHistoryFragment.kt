@@ -69,7 +69,6 @@ class OrderHistoryFragment : Fragment() {
 
             override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {
                 processDialog.dismiss()
-                TODO("Not yet implemented")
             }
         })
     }
@@ -88,7 +87,6 @@ class OrderHistoryFragment : Fragment() {
 
             override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {
                 processDialog.dismiss()
-                TODO("Not yet implemented")
             }
         })
     }

@@ -82,7 +82,6 @@ class OrderOutletFragment : Fragment() {
 
             override fun onFailure(call: Call<Response>, t: Throwable) {
                 processDialog.dismiss()
-                TODO("Not yet implemented")
             }
         })
     }

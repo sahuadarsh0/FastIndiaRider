@@ -75,6 +75,12 @@ interface RiderService {
     @GET("rider/appVer")
     fun checkUpdate(): Call<CheckUpdate>
 
+    @GET("rider/sendOTP/{mobile}/{otp}")
+    fun sendOtp(
+        @Path("mobile") mobile: String,
+        @Path("otp") otp: String?
+    ): Call<ResponseBody>
+
 
     companion object {
 

@@ -50,8 +50,6 @@ class HolidayHistoryFragment : Fragment() {
         val getRiderHoliday = RiderService.create().holiday(riderId)
         getRiderHoliday.enqueue(object : Callback<ArrayList<Holiday>?> {
             override fun onResponse(call: Call<ArrayList<Holiday>?>, response: Response<ArrayList<Holiday>?>) {
-
-
                 val holidays = response.body()
                 adapter.setList(holidays)
                 adapter.notifyDataSetChanged()
