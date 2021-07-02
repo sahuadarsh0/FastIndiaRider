@@ -73,14 +73,6 @@ class LoginActivity : AppCompatActivity() {
                     responseData = response.body()!!
                     otp = response.body()?.otp.toString()
                     responseData.data?.apply {
-                        userSharedPreferences["name"] = name
-                        userSharedPreferences["mobile"] = mobile
-                        userSharedPreferences["emailId"] = emailId
-                        userSharedPreferences["address"] = address
-                        userSharedPreferences["cityId"] = cityId
-                        userSharedPreferences["stateId"] = stateId
-                        userSharedPreferences["riderId"] = riderId
-                        userSharedPreferences["image"] = image
                         userSharedPreferences["status"] = status
                         userSharedPreferences.apply()
                     }
@@ -98,9 +90,21 @@ class LoginActivity : AppCompatActivity() {
 
     private fun verify(enteredOtp: String) {
         if (enteredOtp == otp) {
-            if (!userSharedPreferences["status"].equals("Disabled"))
+            if (!userSharedPreferences["status"].equals("Disabled")) {
+                responseData.data?.apply {
+                    userSharedPreferences["name"] = name
+                    userSharedPreferences["mobile"] = mobile
+                    userSharedPreferences["emailId"] = emailId
+                    userSharedPreferences["address"] = address
+                    userSharedPreferences["cityId"] = cityId
+                    userSharedPreferences["stateId"] = stateId
+                    userSharedPreferences["riderId"] = riderId
+                    userSharedPreferences["image"] = image
+                    userSharedPreferences["status"] = status
+                    userSharedPreferences.apply()
+                }
                 openDashboard()
-            else
+            }else
                 Toast.makeText(this, "Login Denied", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show()

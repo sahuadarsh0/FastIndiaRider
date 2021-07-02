@@ -38,7 +38,6 @@ tools:context=".ui.order.OrderOutletFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orders_label" />
 
-
     <TextView
         android:id="@+id/label2"
         android:layout_width="wrap_content"
@@ -64,7 +63,7 @@ tools:context=".ui.order.OrderOutletFragment">
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_style_selected"
         android:hint="@string/start_typing"
-        android:inputType="text"
+        android:inputType="number"
         android:maxLines="1"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,8 +106,7 @@ tools:context=".ui.order.OrderOutletFragment">
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_no"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.001" />
 
     <TextView
         android:id="@+id/label7"
@@ -145,8 +143,6 @@ tools:context=".ui.order.OrderOutletFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customer_name"
         app:layout_constraintVertical_bias="0.0" />
-
-
 
     <Button
         android:id="@+id/submit"
