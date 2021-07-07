@@ -33,7 +33,7 @@ object MD {
             title(text = title)
             message(text = message)
             positiveButton(text = button) {
-                var browserIntent: Intent? = null
+                var browserIntent: Intent?
                 browserIntent = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(url)

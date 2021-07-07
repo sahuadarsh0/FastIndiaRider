@@ -101,10 +101,21 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                         positiveButton(R.string.submit)
                     }
                 }
-                if (order.status == "Pending")
-                    delivered.visibility = View.GONE
-                else
-                    pendingGroup.visibility = View.GONE
+
+                when(order.status){
+                    "Pending"->{
+                        delivered.visibility = View.GONE
+                        canceled.visibility = View.GONE
+                    }
+                    "Delivered"->{
+                        canceled.visibility = View.GONE
+                        pendingGroup.visibility = View.GONE
+                    }
+                    "Cancelled"->{
+                        delivered.visibility = View.GONE
+                        pendingGroup.visibility = View.GONE
+                    }
+                }
             }
 
         }
