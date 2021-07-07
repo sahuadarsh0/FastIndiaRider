@@ -44,11 +44,14 @@ class Splash : AppCompatActivity() {
             object : NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     val handler = Handler()
-                    handler.postDelayed({
-                        handler1.removeCallbacks(runnable)
+                    handler.postDelayed(
+                        {
+                            handler1.removeCallbacks(runnable)
 
-                        checkUser()
-                    }, 3000)
+                            checkUser()
+                        },
+                        3000
+                    )
                 }
             }
         )
@@ -59,7 +62,6 @@ class Splash : AppCompatActivity() {
             Log.d("asa", "App Version: $version")
         } catch (e: PackageManager.NameNotFoundException) {
             Log.d("asa", "Error App Version: ${e.printStackTrace()}")
-
         }
     }
 
@@ -67,30 +69,30 @@ class Splash : AppCompatActivity() {
         val checkUserCall: Call<Check> = Service.create().check("ComplicatedQWERTYUIOP789")
         checkUserCall.enqueue(object : Callback<Check?> {
             override fun onResponse(
-                call: Call<Check?>, response: retrofit2.Response<Check?>
+                call: Call<Check?>,
+                response: retrofit2.Response<Check?>
             ) {
-
                 if (response.isSuccessful) {
                     val check = response.body()
                     if (check?.jsonContinue.equals("true")) {
                         checkUpdate()
-                    } else
+                    } else {
                         1 / 0
+                    }
                 }
             }
 
             override fun onFailure(call: Call<Check?>, t: Throwable) {
             }
         })
-
     }
-
 
     private fun checkUpdate() {
         val checkUserCall: Call<CheckUpdate> = RiderService.create().checkUpdate()
         checkUserCall.enqueue(object : Callback<CheckUpdate?> {
             override fun onResponse(
-                call: Call<CheckUpdate?>, response: retrofit2.Response<CheckUpdate?>
+                call: Call<CheckUpdate?>,
+                response: retrofit2.Response<CheckUpdate?>
             ) {
                 if (response.isSuccessful) {
                     val check = response.body()
@@ -101,7 +103,7 @@ class Splash : AppCompatActivity() {
                                 "Update",
                                 "You need to update your app to latest version",
                                 "Update",
-                                "http://play.google.com/store/apps/details?id=${packageName}"
+                                "http://play.google.com/store/apps/details?id=$packageName"
                             )
                         } else {
                             startActivity(Intent(this@Splash, LoginActivity::class.java))
@@ -115,6 +117,4 @@ class Splash : AppCompatActivity() {
             }
         })
     }
-
-
 }

@@ -54,7 +54,6 @@ class HolidayHistoryFragment : Fragment() {
                 adapter.setList(holidays)
                 adapter.notifyDataSetChanged()
                 processDialog.dismiss()
-
             }
 
             override fun onFailure(call: Call<ArrayList<Holiday>?>, t: Throwable) {
@@ -68,5 +67,4 @@ class HolidayHistoryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

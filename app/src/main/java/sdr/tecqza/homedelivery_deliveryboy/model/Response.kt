@@ -30,7 +30,5 @@ data class Data(
     val cityId: String? = null,
 
     @field:SerializedName("rider_id")
-    val riderId: String? = null,
-
-    )
-
+    val riderId: String? = null
+)

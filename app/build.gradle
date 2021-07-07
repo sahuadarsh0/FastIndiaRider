@@ -90,3 +90,21 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
     implementation 'com.afollestad.material-dialogs:input:3.3.0'
 }
+
+ktlint {
+    version = "0.34.0"
+    debug = true
+    verbose = true
+    outputToConsole = true
+    outputColorName = "RED"
+    ignoreFailures = true
+    enableExperimentalRules = true
+    reporters {
+        reporter "plain"
+        reporter "checkstyle"
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}

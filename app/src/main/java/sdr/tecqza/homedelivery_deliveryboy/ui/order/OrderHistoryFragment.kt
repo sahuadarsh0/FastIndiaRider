@@ -1,7 +1,6 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui.order
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,6 @@ class OrderHistoryFragment : Fragment() {
         _binding = FragmentOrderHistoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         processDialog = ProcessDialog(requireContext())
         userSharedPreferences = SharedPrefs(requireContext(), "USER")
 
@@ -47,20 +45,19 @@ class OrderHistoryFragment : Fragment() {
         binding.ordersList.adapter = adapter
         processDialog.show()
 
-        if (args.status != "All")
+        if (args.status != "All") {
             getOrder(args.status)
-        else
+        } else {
             getAllOrder()
+        }
 
         return root
     }
 
     private fun getAllOrder() {
-
         val order = RiderService.create().index(userSharedPreferences["riderId"])
         order.enqueue(object : Callback<ArrayList<Order>?> {
             override fun onResponse(call: Call<ArrayList<Order>?>, response: Response<ArrayList<Order>?>) {
-
                 val orders = response.body()
                 adapter.setList(orders)
                 adapter.notifyDataSetChanged()
@@ -77,12 +74,10 @@ class OrderHistoryFragment : Fragment() {
         val order = RiderService.create().order(userSharedPreferences["riderId"], status)
         order.enqueue(object : Callback<ArrayList<Order>?> {
             override fun onResponse(call: Call<ArrayList<Order>?>, response: Response<ArrayList<Order>?>) {
-
                 val orders = response.body()
                 adapter.setList(orders)
                 adapter.notifyDataSetChanged()
                 processDialog.dismiss()
-
             }
 
             override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {

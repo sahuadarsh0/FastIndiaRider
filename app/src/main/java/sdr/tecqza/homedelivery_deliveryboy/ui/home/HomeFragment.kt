@@ -19,7 +19,6 @@ import sdr.tecqza.homedelivery_deliveryboy.model.Response
 import technited.minds.androidutils.ProcessDialog
 import technited.minds.androidutils.SharedPrefs
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
@@ -68,18 +67,16 @@ class HomeFragment : Fragment() {
             duty.setOnCheckedChangeListener { checked ->
                 changeDutyMode()
             }
-            bigBazaar.setOnClickListener{
-                if (duty.isChecked){
+            bigBazaar.setOnClickListener {
+                if (duty.isChecked) {
                     findNavController().navigate(R.id.action_navigation_home_to_orderOutletFragment)
-                }
-                else Toast.makeText(context, "Turn your duty On", Toast.LENGTH_SHORT).show()
+                } else Toast.makeText(context, "Turn your duty On", Toast.LENGTH_SHORT).show()
             }
         }
 
         getOrdersCount()
         return root
     }
-
 
     private fun changeDutyMode() {
         processDialog.show()
@@ -90,6 +87,7 @@ class HomeFragment : Fragment() {
                 userSharedPreferences["status"] = body?.data?.status
                 processDialog.dismiss()
             }
+
             override fun onFailure(call: Call<Response?>, t: Throwable) {
                 processDialog.dismiss()
             }
@@ -97,10 +95,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkStatus() {
-        if (userSharedPreferences["status"].equals("Active"))
+        if (userSharedPreferences["status"].equals("Active")) {
             binding.duty.setChecked(true)
-        else
+        } else {
             binding.duty.setChecked(false)
+        }
     }
 
     private fun getOrdersCount() {

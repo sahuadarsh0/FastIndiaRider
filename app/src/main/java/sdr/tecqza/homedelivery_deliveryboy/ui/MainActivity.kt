@@ -1,19 +1,18 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import sdr.tecqza.homedelivery_deliveryboy.R
 import sdr.tecqza.homedelivery_deliveryboy.databinding.ActivityMainBinding
 import technited.minds.androidutils.SharedPrefs
 
-class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var userSharedPreferences: SharedPrefs
@@ -28,6 +27,7 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
         navView.setupWithNavController(navController)
         navView.setOnNavigationItemSelectedListener(this)
     }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> {
@@ -35,13 +35,13 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
                     title(text = "Logout?")
                     message(text = "Are you sure want to logout ?")
                     cornerRadius(16f)
-                    positiveButton(text="Yes") { dialog ->
+                    positiveButton(text = "Yes") { dialog ->
                         userSharedPreferences = SharedPrefs(this@MainActivity, "USER")
                         userSharedPreferences.clearAll()
                         dialog.dismiss()
                         finish()
                     }
-                    negativeButton(text= "Cancel") { dialog ->
+                    negativeButton(text = "Cancel") { dialog ->
                         dialog.dismiss()
                     }
                 }
@@ -57,7 +57,5 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
             }
         }
         return true
-
     }
-
 }

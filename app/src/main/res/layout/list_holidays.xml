@@ -2,24 +2,24 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_margin="5dp"
-    android:id="@+id/card"
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp">
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             tools:text="2020/15/11" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -22,7 +22,6 @@ import sdr.tecqza.homedelivery_deliveryboy.model.Order
 import technited.minds.androidutils.ProcessDialog
 import technited.minds.androidutils.SharedPrefs
 
-
 class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     private val orderList = ArrayList<Order>()
@@ -51,7 +50,6 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
         holder.bind(orderList[position])
     }
 
-
     inner class OrderViewHolder(private val binding: ListOrderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(order: Order) {
             binding.apply {
@@ -74,7 +72,6 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                             dialog.dismiss()
                         }
                     }
-
                 }
 
                 call.setOnClickListener {
@@ -84,7 +81,6 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                 }
 
                 cancel.setOnClickListener {
-
                     MaterialDialog(itemView.context).show {
                         title(text = "Reason")
                         message(text = "Enter reason for Cancellation")
@@ -92,32 +88,31 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
                         input { dialog, text ->
 
-                            if (text.toString().isNullOrBlank())
+                            if (text.toString().isBlank()) {
                                 Toast.makeText(itemView.context, "Reason cannot be empty", Toast.LENGTH_SHORT).show()
-                            else
+                            } else {
                                 cancelOrderStatus(order.orderId!!, text.toString())
-
+                            }
                         }
                         positiveButton(R.string.submit)
                     }
                 }
 
-                when(order.status){
-                    "Pending"->{
+                when (order.status) {
+                    "Pending" -> {
                         delivered.visibility = View.GONE
                         canceled.visibility = View.GONE
                     }
-                    "Delivered"->{
+                    "Delivered" -> {
                         canceled.visibility = View.GONE
                         pendingGroup.visibility = View.GONE
                     }
-                    "Cancelled"->{
+                    "Cancelled" -> {
                         delivered.visibility = View.GONE
                         pendingGroup.visibility = View.GONE
                     }
                 }
             }
-
         }
 
         private fun sendOTP(mobile: String, otp: String, orderId: String) {
@@ -136,21 +131,19 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                                 if (text.toString() == otp) {
                                     Log.d("asa", "onResponse: OTP matched $text = > $otp")
                                     orderStatus(orderId)
-                                } else
+                                } else {
                                     Toast.makeText(itemView.context, "OTP not matched", Toast.LENGTH_SHORT).show()
-
+                                }
                             }
                             positiveButton(R.string.submit)
                         }
                     }
-
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     Log.d("asa", "onFailure: ${t.message}")
                 }
             })
-
         }
 
         private fun orderStatus(orderId: String) {
@@ -158,7 +151,6 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
             val orderStatus = RiderService.create().orderStatus(orderId)
             orderStatus.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-
                     if (response.isSuccessful) {
                         Toast.makeText(itemView.context, "Order Delivered", Toast.LENGTH_SHORT).show()
                         itemView.findNavController().navigate(R.id.navigation_home)
@@ -169,7 +161,6 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     processDialog.dismiss()
                     Toast.makeText(itemView.context, "Error Not Delivered", Toast.LENGTH_SHORT).show()
-
                 }
             })
         }
@@ -179,10 +170,11 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
             val cancelOrderStatus = RiderService.create().cancelOrderStatus(orderId, reason)
             cancelOrderStatus.enqueue(object : Callback<ResponseBody?> {
                 override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-                    if (response.isSuccessful)
+                    if (response.isSuccessful) {
                         Log.d("asa", "order cancelled")
-                    Toast.makeText(itemView.context, "Order cancelled", Toast.LENGTH_SHORT).show()
-                    itemView.findNavController().navigate(R.id.navigation_home)
+                        Toast.makeText(itemView.context, "Order cancelled", Toast.LENGTH_SHORT).show()
+                        itemView.findNavController().navigate(R.id.navigation_home)
+                    }
                     processDialog.dismiss()
                 }
 
@@ -191,8 +183,6 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
                     processDialog.dismiss()
                 }
-
-
             })
         }
     }

@@ -12,4 +12,3 @@ data class Check(
     val admin: String? = null,
     val status: String? = null
 )
-

@@ -19,6 +19,5 @@ class WebPage : AppCompatActivity() {
 
         val url = intent.getStringExtra("url").toString()
         webView.loadUrl(url)
-
     }
 }

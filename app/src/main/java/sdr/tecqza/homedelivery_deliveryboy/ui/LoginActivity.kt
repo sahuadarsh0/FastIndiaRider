@@ -14,7 +14,6 @@ import sdr.tecqza.homedelivery_deliveryboy.model.Response
 import technited.minds.androidutils.ProcessDialog
 import technited.minds.androidutils.SharedPrefs
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -22,7 +21,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var responseData: Response
     private lateinit var userSharedPreferences: SharedPrefs
     private lateinit var processDialog: ProcessDialog
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
                 processDialog.dismiss()
             }
         })
-
     }
 
     private fun verify(enteredOtp: String) {
@@ -104,8 +101,9 @@ class LoginActivity : AppCompatActivity() {
                     userSharedPreferences.apply()
                 }
                 openDashboard()
-            }else
+            } else {
                 Toast.makeText(this, "Login Denied", Toast.LENGTH_SHORT).show()
+            }
         } else {
             Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show()
         }
@@ -116,7 +114,6 @@ class LoginActivity : AppCompatActivity() {
         startActivity(i)
         finish()
     }
-
 
     private fun visibleSubmit() {
         binding.mobile.visibility = GONE

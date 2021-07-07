@@ -1,7 +1,6 @@
 package sdr.tecqza.homedelivery_deliveryboy.api
 
 import android.util.Log
-import sdr.tecqza.homedelivery_deliveryboy.model.Check
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -10,13 +9,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import sdr.tecqza.homedelivery_deliveryboy.model.Check
 
 interface Service {
 
     @FormUrlEncoded
     @POST("fastindia_permission")
     fun check(
-        @Field("key") key: String?
+        @Field("key")
+        key: String?
     ): Call<Check>
 
     companion object {
@@ -37,7 +38,5 @@ interface Service {
                 .build()
             return retrofit.create(Service::class.java)
         }
-
     }
 }
-
