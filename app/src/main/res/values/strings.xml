@@ -22,7 +22,7 @@
     <string name="mobile">Mobile</string>
     <string name="call">Call</string>
     <string name="cancel">Cancel</string>
-    <string name="canceled">Canceled</string>
+    <string name="cancelled">Cancelled</string>
     <string name="orders">Orders</string>
     <string name="pick_up_from">Pick up From</string>
     <string name="submit">submit</string>
