@@ -9,7 +9,6 @@
 ![3rd](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/03.jpg)
 ![4th](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/04.jpg)
 ![5th](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/05.jpg)
-![6th](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/06.jpg)
 ![7th](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/07.jpg)
 ![8th](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/08.jpg)
 ![9th](https://raw.githubusercontent.com/sahuadarsh0/FastIndiaRider/master/Screenshots/09.jpg)
