@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,7 +59,14 @@ class HolidayHistoryFragment : Fragment() {
 
             override fun onFailure(call: Call<ArrayList<Holiday>?>, t: Throwable) {
                 processDialog.dismiss()
-                TODO("Not yet implemented")
+                MaterialDialog(requireContext()).show {
+                    title(text = "API ERROR")
+                    message(text = "Order Not Cancelled")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
             }
         })
     }

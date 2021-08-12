@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
@@ -94,6 +95,14 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Response?>, t: Throwable) {
+                MaterialDialog(requireContext()).show {
+                    title(text = "API ERROR")
+                    message(text = "Update Duty Failed")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
                 processDialog.dismiss()
             }
         })
@@ -121,7 +130,14 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Count?>, t: Throwable) {
-                TODO("Not yet implemented")
+                MaterialDialog(requireContext()).show {
+                title(text = "API ERROR")
+                message(text = "Order Not Counted")
+                cornerRadius(16f)
+                positiveButton(text = "Yes") { dialog ->
+                    dialog.dismiss()
+                }
+            }
             }
         })
     }

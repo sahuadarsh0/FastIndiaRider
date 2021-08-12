@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,6 +66,14 @@ class OrderHistoryFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {
+                MaterialDialog(requireContext()).show {
+                    title(text = "API ERROR")
+                    message(text = "Cannot Fetch Order History")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
                 processDialog.dismiss()
             }
         })
@@ -81,6 +90,14 @@ class OrderHistoryFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {
+                MaterialDialog(requireContext()).show {
+                    title(text = "API ERROR")
+                    message(text = "Cannot Fetch Order History")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
                 processDialog.dismiss()
             }
         })

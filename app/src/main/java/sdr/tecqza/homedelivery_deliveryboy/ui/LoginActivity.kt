@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import sdr.tecqza.homedelivery_deliveryboy.api.RiderService
@@ -79,7 +80,14 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Response?>, t: Throwable) {
-                Toast.makeText(applicationContext, "Invalid Mobile! OTP not sent", Toast.LENGTH_SHORT).show()
+                MaterialDialog(this@LoginActivity).show {
+                    title(text = "API ERROR")
+                    message(text = "OTP not sent")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
                 processDialog.dismiss()
             }
         })

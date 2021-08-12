@@ -12,6 +12,7 @@ import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import sdr.tecqza.homedelivery_deliveryboy.R
@@ -92,6 +93,14 @@ class Splash : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<CheckUpdate?>, t: Throwable) {
+                MaterialDialog(this@Splash).show {
+                    title(text = "API ERROR")
+                    message(text = "Update Checking failed")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
             }
         })
     }

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import retrofit2.Call
 import retrofit2.Callback
 import sdr.tecqza.homedelivery_deliveryboy.R
@@ -84,6 +85,14 @@ class OrderOutletFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Response>, t: Throwable) {
+                MaterialDialog(requireContext()).show {
+                    title(text = "API ERROR")
+                    message(text = "Order Not Cancelled")
+                    cornerRadius(16f)
+                    positiveButton(text = "Yes") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
                 processDialog.dismiss()
             }
         })
