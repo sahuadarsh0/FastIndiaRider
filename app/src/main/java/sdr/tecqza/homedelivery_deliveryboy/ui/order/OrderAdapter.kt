@@ -1,5 +1,6 @@
 package sdr.tecqza.homedelivery_deliveryboy.ui.order
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -67,7 +68,8 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                             sendOTP(
                                 order.mobile!!,
                                 randomPin.toString(),
-                                order.orderId!!
+                                order.orderId!!,
+                                it.context
                             )
                             dialog.dismiss()
                         }
@@ -91,7 +93,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                             if (text.toString().isBlank()) {
                                 Toast.makeText(itemView.context, "Reason cannot be empty", Toast.LENGTH_SHORT).show()
                             } else {
-                                cancelOrderStatus(order.orderId!!, text.toString())
+                                cancelOrderStatus(order.orderId!!, text.toString(),itemView.context)
                             }
                         }
                         positiveButton(R.string.submit)
@@ -115,7 +117,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
             }
         }
 
-        private fun sendOTP(mobile: String, otp: String, orderId: String) {
+        private fun sendOTP(mobile: String, otp: String, orderId: String, context: Context) {
             val sendOTP = RiderService.create().sendOtp(mobile, otp)
             sendOTP.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -130,7 +132,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                                 Log.d("asa", "text  $text = > OTP $otp")
                                 if (text.toString() == otp) {
                                     Log.d("asa", "onResponse: OTP matched $text = > $otp")
-                                    orderStatus(orderId)
+                                    orderStatus(orderId,itemView.context)
                                 } else {
                                     Toast.makeText(itemView.context, "OTP not matched", Toast.LENGTH_SHORT).show()
                                 }
@@ -142,11 +144,19 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     Log.d("asa", "onFailure: ${t.message}")
+                    MaterialDialog(context).show {
+                        title(text = "API ERROR")
+                        message(text = "OTP Sending Failed")
+                        cornerRadius(16f)
+                        positiveButton(text = "Yes") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                 }
             })
         }
 
-        private fun orderStatus(orderId: String) {
+        private fun orderStatus(orderId: String, context: Context) {
             processDialog.show()
             val orderStatus = RiderService.create().orderStatus(orderId)
             orderStatus.enqueue(object : Callback<ResponseBody> {
@@ -160,12 +170,19 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     processDialog.dismiss()
-                    Toast.makeText(itemView.context, "Error Not Delivered", Toast.LENGTH_SHORT).show()
+                    MaterialDialog(context).show {
+                        title(text = "API ERROR")
+                        message(text = "Order Not Delivered")
+                        cornerRadius(16f)
+                        positiveButton(text = "Yes") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                 }
             })
         }
 
-        private fun cancelOrderStatus(orderId: String, reason: String) {
+        private fun cancelOrderStatus(orderId: String, reason: String, context: Context) {
             processDialog.show()
             val cancelOrderStatus = RiderService.create().cancelOrderStatus(orderId, reason)
             cancelOrderStatus.enqueue(object : Callback<ResponseBody?> {
@@ -179,8 +196,14 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                    Toast.makeText(itemView.context, "Error Order not cancelled", Toast.LENGTH_SHORT).show()
-
+                    MaterialDialog(context).show {
+                        title(text = "API ERROR")
+                        message(text = "Order Not Cancelled")
+                        cornerRadius(16f)
+                        positiveButton(text = "Yes") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                     processDialog.dismiss()
                 }
             })

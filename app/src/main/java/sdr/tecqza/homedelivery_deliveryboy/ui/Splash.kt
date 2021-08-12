@@ -47,8 +47,7 @@ class Splash : AppCompatActivity() {
                     handler.postDelayed(
                         {
                             handler1.removeCallbacks(runnable)
-
-                            checkUser()
+                            checkUpdate()
                         },
                         3000
                     )
@@ -65,27 +64,6 @@ class Splash : AppCompatActivity() {
         }
     }
 
-    private fun checkUser() {
-        val checkUserCall: Call<Check> = Service.create().check("ComplicatedQWERTYUIOP789")
-        checkUserCall.enqueue(object : Callback<Check?> {
-            override fun onResponse(
-                call: Call<Check?>,
-                response: retrofit2.Response<Check?>
-            ) {
-                if (response.isSuccessful) {
-                    val check = response.body()
-                    if (check?.jsonContinue.equals("true")) {
-                        checkUpdate()
-                    } else {
-                        1 / 0
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<Check?>, t: Throwable) {
-            }
-        })
-    }
 
     private fun checkUpdate() {
         val checkUserCall: Call<CheckUpdate> = RiderService.create().checkUpdate()

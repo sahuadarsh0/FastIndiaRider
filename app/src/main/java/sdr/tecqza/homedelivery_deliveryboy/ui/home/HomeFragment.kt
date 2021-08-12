@@ -13,7 +13,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import sdr.tecqza.homedelivery_deliveryboy.R
 import sdr.tecqza.homedelivery_deliveryboy.api.RiderService
+import sdr.tecqza.homedelivery_deliveryboy.api.Service
 import sdr.tecqza.homedelivery_deliveryboy.databinding.FragmentHomeBinding
+import sdr.tecqza.homedelivery_deliveryboy.model.Check
 import sdr.tecqza.homedelivery_deliveryboy.model.Count
 import sdr.tecqza.homedelivery_deliveryboy.model.Response
 import technited.minds.androidutils.ProcessDialog
@@ -64,14 +66,17 @@ class HomeFragment : Fragment() {
                 action.status = "Delivered"
                 findNavController().navigate(action)
             }
+
             duty.setOnCheckedChangeListener { checked ->
                 changeDutyMode()
             }
+
             bigBazaar.setOnClickListener {
                 if (duty.isChecked) {
                     findNavController().navigate(R.id.action_navigation_home_to_orderOutletFragment)
                 } else Toast.makeText(context, "Turn your duty On", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         getOrdersCount()
