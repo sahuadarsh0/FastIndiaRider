@@ -47,6 +47,14 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
         return orderList.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         holder.bind(orderList[position])
     }
@@ -93,13 +101,17 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                             if (text.toString().isBlank()) {
                                 Toast.makeText(itemView.context, "Reason cannot be empty", Toast.LENGTH_SHORT).show()
                             } else {
-                                cancelOrderStatus(order.orderId!!, text.toString(),itemView.context)
+                                cancelOrderStatus(order.orderId!!, text.toString(), itemView.context)
                             }
                         }
                         positiveButton(R.string.submit)
                     }
                 }
 
+                delivered.visibility = View.VISIBLE
+                canceled.visibility = View.VISIBLE
+                canceled.visibility = View.VISIBLE
+                pendingGroup.visibility = View.VISIBLE
                 when (order.status) {
                     "Pending" -> {
                         delivered.visibility = View.GONE
@@ -132,7 +144,7 @@ class OrderAdapter : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
                                 Log.d("asa", "text  $text = > OTP $otp")
                                 if (text.toString() == otp) {
                                     Log.d("asa", "onResponse: OTP matched $text = > $otp")
-                                    orderStatus(orderId,itemView.context)
+                                    orderStatus(orderId, itemView.context)
                                 } else {
                                     Toast.makeText(itemView.context, "OTP not matched", Toast.LENGTH_SHORT).show()
                                 }

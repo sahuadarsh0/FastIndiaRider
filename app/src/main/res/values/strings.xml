@@ -28,4 +28,8 @@
     <string name="submit">submit</string>
     <string name="start_typing">Start Typing</string>
     <string name="customer_name">Customer Name</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
+    <string name="mtd">Month Till Date</string>
+    <string name="advance_filter"><u>Advance Filter</u></string>
 </resources>

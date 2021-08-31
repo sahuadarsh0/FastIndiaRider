@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         binding.apply {
             sendOtp.setOnClickListener {
                 if (mobile.text.isNotEmpty() || mobile.text.matches(Regex("^[6-9][0-9]{9}$"))) {
-                    send(binding.mobile.text.toString())
+                    send(mobile.text.toString())
                 } else {
                     Toast.makeText(this@LoginActivity, "Enter 10 digit Number", Toast.LENGTH_SHORT).show()
                 }
