@@ -32,4 +32,7 @@
     <string name="today">Today</string>
     <string name="mtd">Month Till Date</string>
     <string name="advance_filter"><u>Advance Filter</u></string>
+    <string name="payments">Payments</string>
+    <string name="title_payment_history">Payments</string>
+    <string name="filter">Filter</string>
 </resources>

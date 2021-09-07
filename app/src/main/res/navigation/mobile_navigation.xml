@@ -38,6 +38,11 @@
         android:label="@string/title_holiday_history"
         tools:layout="@layout/fragment_holiday_history" />
     <fragment
+        android:id="@+id/navigation_payment_history"
+        android:name="sdr.tecqza.homedelivery_deliveryboy.ui.payment.PaymentHistoryFragment"
+        android:label="@string/title_payment_history"
+        tools:layout="@layout/fragment_payment_history" />
+    <fragment
         android:id="@+id/orderOutletFragment"
         android:name="sdr.tecqza.homedelivery_deliveryboy.ui.order.OrderOutletFragment"
         android:label="OrderOutletFragment"

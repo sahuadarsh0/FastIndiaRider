@@ -17,6 +17,11 @@
         android:title="@string/title_holiday_history" />
 
     <item
+        android:id="@+id/navigation_payment_history"
+        android:icon="@drawable/ic_money"
+        android:title="@string/title_payment_history" />
+
+    <item
         android:id="@+id/logout"
         android:icon="@drawable/ic_logout"
         android:title="@string/title_logout" />

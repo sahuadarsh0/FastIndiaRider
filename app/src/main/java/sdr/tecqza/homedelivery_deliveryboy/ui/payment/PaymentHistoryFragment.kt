@@ -1,18 +1,17 @@
-package sdr.tecqza.homedelivery_deliveryboy.ui.order
+package sdr.tecqza.homedelivery_deliveryboy.ui.payment
 
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
@@ -23,7 +22,12 @@ import retrofit2.Response
 import sdr.tecqza.homedelivery_deliveryboy.R
 import sdr.tecqza.homedelivery_deliveryboy.api.RiderService
 import sdr.tecqza.homedelivery_deliveryboy.databinding.FragmentOrderHistoryBinding
+import sdr.tecqza.homedelivery_deliveryboy.databinding.FragmentPaymentHistoryBinding
 import sdr.tecqza.homedelivery_deliveryboy.model.Order
+import sdr.tecqza.homedelivery_deliveryboy.model.Payment
+import sdr.tecqza.homedelivery_deliveryboy.ui.order.OrderAdapter
+import sdr.tecqza.homedelivery_deliveryboy.ui.order.OrderHistoryFragmentArgs
+import sdr.tecqza.homedelivery_deliveryboy.ui.order.OrderViewModel
 import technited.minds.androidutils.ProcessDialog
 import technited.minds.androidutils.SharedPrefs
 import java.text.SimpleDateFormat
@@ -32,57 +36,36 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 import java.util.*
 
-class OrderHistoryFragment : Fragment() {
+class PaymentHistoryFragment : Fragment() {
 
-    private lateinit var orderViewModel: OrderViewModel
-    private var _binding: FragmentOrderHistoryBinding? = null
+    private var _binding: FragmentPaymentHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var userSharedPreferences: SharedPrefs
     private lateinit var processDialog: ProcessDialog
-    private var orders: ArrayList<Order>? = null
+    private var payments: ArrayList<Payment>? = null
     private var startCalender: LocalDate? = null
     private var endCalender: LocalDate? = null
-    val args: OrderHistoryFragmentArgs by navArgs()
-    private val adapter = OrderAdapter()
+    private val adapter = PaymentAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        orderViewModel =
-            ViewModelProvider(this).get(OrderViewModel::class.java)
 
-        _binding = FragmentOrderHistoryBinding.inflate(inflater, container, false)
+        _binding = FragmentPaymentHistoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         processDialog = ProcessDialog(requireContext())
         userSharedPreferences = SharedPrefs(requireContext(), "USER")
 
-        binding.ordersList.layoutManager = LinearLayoutManager(context)
-        binding.ordersList.adapter = adapter
+        binding.paymentsList.layoutManager = GridLayoutManager(context,2)
+        binding.paymentsList.adapter = adapter
         processDialog.show()
 
-        if (args.status != "All") {
-            getOrder(args.status)
-            binding.filter.visibility = GONE
-        } else {
-            binding.filter.visibility = VISIBLE
-            getAllOrder()
-        }
+        getAllPayment()
 
-        binding.radioFilter.setOnCheckedChangeListener { group, i ->
-            val selected = group.checkedRadioButtonId
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                when (selected) {
-                    R.id.today -> filter("Today")
-                    R.id.yesterday -> filter("Yesterday")
-                    R.id.mtd -> filter("Mtd")
-                }
-            } else Toast.makeText(context, "Not Supported", Toast.LENGTH_SHORT)
-                .show()
-        }
-        binding.advanced.setOnClickListener {
+         binding.advanced.setOnClickListener {
             startC()
         }
         return root
@@ -99,67 +82,27 @@ class OrderHistoryFragment : Fragment() {
                         startCalender = LocalDate.parse(selectedDate().formatDate())
                     } else Toast.makeText(context, "Not Supported", Toast.LENGTH_SHORT).show()
 
-                    end()
                 }
             }
         }
     }
 
-    private fun end() {
-        MaterialDialog(requireContext()).show {
-            title(text = "Select End Date")
-            datePicker(maxDate = Calendar.getInstance()) { dialog, date ->
-                Toast.makeText(context, ("Selected End date: ${selectedDate().formatDate()}"), Toast.LENGTH_SHORT).show()
-                dialog.setOnDismissListener {
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        endCalender = LocalDate.parse(selectedDate().formatDate())
-                        filter("Range")
-                    } else Toast.makeText(context, "Not Supported", Toast.LENGTH_SHORT).show()
-
-                }
-            }
-        }
-    }
-
-    private fun getAllOrder() {
-        val order = RiderService.create().index(userSharedPreferences["riderId"])
-        order.enqueue(object : Callback<ArrayList<Order>?> {
-            override fun onResponse(call: Call<ArrayList<Order>?>, response: Response<ArrayList<Order>?>) {
-                orders = response.body()
-                adapter.setList(orders)
+ 
+    private fun getAllPayment() {
+        val order = RiderService.create().payment("21")
+//        val order = RiderService.create().payment(userSharedPreferences["riderId"])
+        order.enqueue(object : Callback<ArrayList<Payment>?> {
+            override fun onResponse(call: Call<ArrayList<Payment>?>, response: Response<ArrayList<Payment>?>) {
+                payments = response.body()
+                adapter.setList(payments)
                 adapter.notifyDataSetChanged()
                 processDialog.dismiss()
             }
 
-            override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Payment>?>, t: Throwable) {
                 MaterialDialog(requireContext()).show {
                     title(text = "API ERROR")
-                    message(text = "Cannot Fetch Order History")
-                    cornerRadius(16f)
-                    positiveButton(text = "Yes") { dialog ->
-                        dialog.dismiss()
-                    }
-                }
-                processDialog.dismiss()
-            }
-        })
-    }
-
-    private fun getOrder(status: String) {
-        val order = RiderService.create().order(userSharedPreferences["riderId"], status)
-        order.enqueue(object : Callback<ArrayList<Order>?> {
-            override fun onResponse(call: Call<ArrayList<Order>?>, response: Response<ArrayList<Order>?>) {
-                orders = response.body()
-                adapter.setList(orders)
-                adapter.notifyDataSetChanged()
-                processDialog.dismiss()
-            }
-
-            override fun onFailure(call: Call<ArrayList<Order>?>, t: Throwable) {
-                MaterialDialog(requireContext()).show {
-                    title(text = "API ERROR")
-                    message(text = "Cannot Fetch Order History")
+                    message(text = "Cannot Fetch Payment History")
                     cornerRadius(16f)
                     positiveButton(text = "Yes") { dialog ->
                         dialog.dismiss()
@@ -173,15 +116,13 @@ class OrderHistoryFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun filter(type: String) {
-        val filteredList = arrayListOf<Order>()
+        val filteredList = arrayListOf<Payment>()
         val Today = LocalDate.now()
         val Formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy")
-        binding.date1.text = ""
-        binding.date2.text = ""
-        when (type) {
+      when (type) {
             "Today" -> {
                 val currentDate = Today.format(Formatter)
-                orders?.let {
+                payments?.let {
                     for (item in it) {
                         if (item.date!!.contains(currentDate)) {
                             filteredList.add(item)
@@ -195,7 +136,7 @@ class OrderHistoryFragment : Fragment() {
                 Log.d("asa", "filter: yesterday $yesterday0")
                 val yesterday = yesterday0.format(Formatter)
                 Log.d("asa", "filter: formattedYesterday $yesterday")
-                orders?.let {
+                payments?.let {
                     for (item in it) {
                         if (item.date!!.contains(yesterday.toString())) {
                             filteredList.add(item)
@@ -210,7 +151,7 @@ class OrderHistoryFragment : Fragment() {
                 val firstDayOfMonth = first.format(Formatter)
                 Log.d("asa", "filter: firstDayOfMonth $firstDayOfMonth")
                 val ranges = first..Today
-                orders?.let {
+                payments?.let {
                     for (item in it) {
                         if (LocalDate.parse(item.date!!, DateTimeFormatter.ofPattern("dd/MMM/yyyy")) in ranges) {
                             filteredList.add(item)
@@ -228,10 +169,8 @@ class OrderHistoryFragment : Fragment() {
                 val lastDay = last?.format(Formatter)
                 Log.d("asa", "filter: firstDay $firstDay")
                 Log.d("asa", "filter: lastDay $lastDay")
-                binding.date1.text = firstDay
-                binding.date2.text = " - $lastDay"
                 val ranges = first!!..last!!
-                orders?.let {
+                payments?.let {
                     for (item in it) {
                         if (LocalDate.parse(item.date!!, DateTimeFormatter.ofPattern("dd/MMM/yyyy")) in ranges) {
                             filteredList.add(item)

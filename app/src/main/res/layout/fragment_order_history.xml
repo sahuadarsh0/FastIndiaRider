@@ -91,6 +91,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:contentDescription="@string/orders"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,5 +99,11 @@
         app:layout_constraintTop_toBottomOf="@+id/advanced"
         tools:itemCount="5"
         tools:listitem="@layout/list_order" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="date2,advanced,date1,radio_filter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

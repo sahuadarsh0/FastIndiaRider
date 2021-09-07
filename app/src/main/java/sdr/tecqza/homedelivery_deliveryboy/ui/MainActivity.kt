@@ -91,6 +91,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.navigation_holiday_history -> {
                 navController.navigate(R.id.navigation_holiday_history)
             }
+            R.id.navigation_payment_history -> {
+                navController.navigate(R.id.navigation_payment_history)
+            }
 
         }
         return true
