@@ -42,6 +42,12 @@ interface RiderService {
         riderId: String?
     ): Call<ArrayList<Order>?>
 
+    @GET("rider/payment/{rider_id}")
+    fun payment(
+        @Path("rider_id")
+        riderId: String?
+    ): Call<ArrayList<Payment>?>
+
     @FormUrlEncoded
     @POST("customer/orderStatus")
     fun orderStatus(

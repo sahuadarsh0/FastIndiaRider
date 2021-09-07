@@ -109,7 +109,7 @@ class OrderHistoryFragment : Fragment() {
                 dialog.setOnDismissListener {
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        endCalender =  LocalDate.parse(selectedDate().formatDate())
+                        endCalender = LocalDate.parse(selectedDate().formatDate())
                         filter("Range")
                     } else Toast.makeText(context, "Not Supported", Toast.LENGTH_SHORT).show()
 
@@ -172,11 +172,11 @@ class OrderHistoryFragment : Fragment() {
         val filteredList = arrayListOf<Order>()
         val Today = LocalDate.now()
         val Formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy")
+        binding.date1.text = ""
+        binding.date2.text = ""
         when (type) {
             "Today" -> {
-                Log.d("asa", "filter: today $Today")
                 val currentDate = Today.format(Formatter)
-                Log.d("asa", "filter: currentDate $currentDate")
                 orders?.let {
                     for (item in it) {
                         if (item.date!!.contains(currentDate)) {
@@ -217,10 +217,16 @@ class OrderHistoryFragment : Fragment() {
             "Range" -> {
 
                 val first = startCalender
+                val last = endCalender
                 Log.d("asa", "filter: first $first")
-                val firstDayOfMonth = first?.format(Formatter)
-                Log.d("asa", "filter: firstDayOfMonth $firstDayOfMonth")
-                val ranges = startCalender!!..endCalender!!
+                Log.d("asa", "filter: last $last")
+                val firstDay = first?.format(Formatter)
+                val lastDay = last?.format(Formatter)
+                Log.d("asa", "filter: firstDay $firstDay")
+                Log.d("asa", "filter: lastDay $lastDay")
+                binding.date1.text = firstDay
+                binding.date2.text = " - $lastDay"
+                val ranges = first!!..last!!
                 orders?.let {
                     for (item in it) {
                         if (LocalDate.parse(item.date!!, DateTimeFormatter.ofPattern("dd/MMM/yyyy")) in ranges) {

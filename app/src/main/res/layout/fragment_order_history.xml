@@ -58,6 +58,25 @@
     </RadioGroup>
 
     <TextView
+        android:id="@+id/date1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_filter"
+        tools:text="28/06/70" />
+
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/date1"
+        app:layout_constraintTop_toBottomOf="@+id/radio_filter"
+        tools:text=" - 28/06/70" />
+
+    <TextView
         android:id="@+id/advanced"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
