@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/da_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DA"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hra_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HRA"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/da_" />
+
+    <TextView
+        android:id="@+id/lta_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LTA"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hra_" />
+
+    <TextView
+        android:id="@+id/bonus_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bonus"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lta_" />
+
+    <TextView
+        android:id="@+id/special_allowance_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Special Allowance"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bonus_" />
+
+    <TextView
+        android:id="@+id/other_allowance_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other Allowance"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/special_allowance_" />
+
+    <TextView
+        android:id="@+id/pf_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PF"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/other_allowance_" />
+
+    <TextView
+        android:id="@+id/esi_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ESI"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pf_" />
+
+    <TextView
+        android:id="@+id/other_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/esi_" />
+
+    <TextView
+        android:id="@+id/basic_pay_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Basic Pay"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/other_" />
+
+    <TextView
+        android:id="@+id/net_salary_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Net Salary"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/basic_pay_" />
+
+    <TextView
+        android:id="@+id/da"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DA"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HRA"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/da" />
+
+    <TextView
+        android:id="@+id/lta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LTA"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hra" />
+
+    <TextView
+        android:id="@+id/bonus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bonus"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lta" />
+
+    <TextView
+        android:id="@+id/special_allowance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="special allowance"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bonus" />
+
+    <TextView
+        android:id="@+id/other_allowance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="other allowance"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/special_allowance" />
+
+    <TextView
+        android:id="@+id/pf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pf"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/other_allowance" />
+
+    <TextView
+        android:id="@+id/esi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="esi"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pf" />
+
+    <TextView
+        android:id="@+id/other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="other"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/esi" />
+
+    <TextView
+        android:id="@+id/basic_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="basic pay"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/other" />
+
+    <TextView
+        android:id="@+id/net_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="net salary"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/basic_pay" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
